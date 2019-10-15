@@ -1,0 +1,10 @@
+{
+    "dev": {
+        "app_function": "chatbot.app",
+        "aws_region": "ap-northeast-2",
+        "profile_name": "default",
+        "project_name": "gsr-meal-chatbo",
+        "runtime": "python3.7",
+        "s3_bucket": "zappa-c005lcom6"
+    }
+}

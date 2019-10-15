@@ -1,0 +1,32 @@
+version: 2.1
+orbs:
+  python: circleci/python@0.2.1
+  zappa: borb/zappa@0.1.0
+  aws-cli: circleci/aws-cli@0.1.16
+jobs:
+  test:
+    docker:
+      - image: circleci/python:3.7.4
+    steps:
+      - checkout
+      - python/install-deps
+      - run: pytest
+  deploy:
+    docker:
+      - image: circleci/python:3.7.4
+    steps:
+      - checkout
+      - aws-cli/install
+      - aws-cli/setup
+      - zappa/deploy-or-update
+workflows:
+  version: 2
+  test-and-deploy:
+    jobs:
+      - test
+      - deploy:
+          requires:
+            - test
+          filters:
+            branches:
+              only: master
