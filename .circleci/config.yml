@@ -18,6 +18,7 @@ jobs:
       - checkout
       - aws-cli/install
       - aws-cli/setup
+      - run: pipenv install
       - zappa/deploy-or-update
 workflows:
   version: 2
