@@ -12,7 +12,7 @@ menus = {'한식': ['국밥', '갈비탕', '냉면', '치킨', '해장국', '순
 def index():
     category = request.form['text']
 
-    if not category or category not in menus.keys():
+    if category not in menus.keys():
         category = random.choice(categories)
 
     food = random.choice(menus[category])
