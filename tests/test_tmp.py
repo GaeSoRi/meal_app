@@ -1,4 +1,4 @@
-from gsr_meal_chatbot import chatbot
+from meal_app import chatbot
 app = chatbot.app.test_client()
 
 def test_get_food():
