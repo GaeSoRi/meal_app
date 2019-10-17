@@ -1,5 +1,6 @@
-def inc(x):
-    return x+1
+from gsr_meal_chatbot import chatbot
+app = chatbot.app.test_client()
 
-def test_answer():
-    assert inc(4)==5
+def test_get_food():
+    res = app.post('/', data={'text': '한식'}, content_type='multipart/form-data')
+    assert res.status_code == 200
