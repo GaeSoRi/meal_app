@@ -1,4 +1,6 @@
 from flask import Flask, request
+from tossi import pick
+
 import random
 
 app = Flask(__name__)
@@ -17,9 +19,10 @@ def index():
 
     food = random.choice(menus[category])
 
+    josa = pick(food, '을(를)')
     res = {
         'response_type': 'in_channel',
-        'text': f'{food}을(를) 먹는건 어때?'
+        'text': f'{food}{josa} 먹는건 어때?',
     }
 
     return res
