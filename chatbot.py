@@ -10,7 +10,7 @@ def index():
 
     with open('data.json') as json_data:
         menus = json.load(json_data)
-        categories = menus.keys()
+        categories = list(menus.keys())
 
     if category not in categories:
         category = random.choice(categories)
