@@ -9,8 +9,8 @@ jobs:
       - image: circleci/python:3.7.4
     steps:
       - checkout
-      - python/install-deps
-      - run: pytest
+      - run: pipenv install --dev
+      - run: pipenv run test ./tests
   deploy:
     docker:
       - image: circleci/python:3.7.4
