@@ -1,5 +1,6 @@
 from meal_app import chatbot
 import json
+import itertools
 
 app = chatbot.app.test_client()
 
@@ -17,13 +18,13 @@ def extract_food_from_text(text):
 def test_get_food():
     res = app.post('/', data={'text': ''}, content_type='multipart/form-data')
     food = extract_food_from_text(json.loads(res.data)['text'])
-    tmp = []
+    foods = []
 
     for i in menus:
-        tmp.extend(menus[i])
+        foods.extend(menus[i])
 
     assert res.status_code == 200
-    assert food in tmp
+    assert food in foods
 
 def test_get_food_text_value():
     res = app.post('/', data={'text': '한식'}, content_type='multipart/form-data')
@@ -35,10 +36,10 @@ def test_get_food_text_value():
 def test_get_food_text_non_exist_value():
     res = app.post('/', data={'text': '가나다'}, content_type='multipart/form-data')
     food = extract_food_from_text(json.loads(res.data)['text'])
-    tmp = []
+    foods = []
 
     for i in menus:
-        tmp.extend(menus[i])
+        foods.extend(menus[i])
 
     assert res.status_code == 200
-    assert food in tmp
+    assert food in foods
