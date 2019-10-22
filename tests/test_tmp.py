@@ -1,6 +1,5 @@
 from meal_app import chatbot
 import json
-import itertools
 
 app = chatbot.app.test_client()
 
